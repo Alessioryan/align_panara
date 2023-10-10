@@ -7,9 +7,8 @@ Contact `{eahn|mylapier}@uw.edu`
 ## Requirements
 * conda
 * python 3.X
-* Montreal Forced Aligner (MFA) via conda
-* Interlingual MFA [Github](https://github.com/jhdeov/interlingual-MFA)
-* etc
+* Montreal Forced Aligner (MFA) via conda (see download [instructions](https://montreal-forced-aligner.readthedocs.io/en/latest/getting_started.html))
+* Interlingual MFA [Github](https://github.com/jhdeov/interlingual-MFA) for Option 2 below
 
 ## Steps
 
@@ -42,13 +41,18 @@ General steps:
 1. initialize conda environment for MFA: `conda activate aligner`
 1. `mfa align [IN_DIR] [DICTIONARY] [MODEL.zip] [OUT_DIR]`
 
+Note: as of MFA version 2.2.11 on Emily's laptop, there is a database shutdown error thrown at the end of the alignment process. This doesn't affect the alignment output. See github [issue](https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner/issues/640). Should be fixed in current versions.
+
 ##### Option 1: Panara-trained aligner
 * (Easier to run, but performs worse)
 * Trained on ~30-45min of Panara interview speech
 
+`mfa align [IN_DIR] models/panara_only_dict.txt models/panara_only.zip [OUT_DIR]`
+
+NOTES: OUT_DIR does not need to be initalized, and paths do not have to be absolute
 
 ##### Option 2: Global English-trained + Panara-adapted aligner
 * (More complicated to run, but performs better)
-* Trained on 3900 hours of Global English from areas including US, Nigeria, India (see [info](https://mfa-models.readthedocs.io/en/latest/acoustic/English/English%20MFA%20acoustic%20model%20v2_2_1.html)), then adapted/fine-tuned on Panara speech (same as above)
+* Trained on 3900 hours of Global English from areas including US, Nigeria, India (see [info](https://mfa-models.readthedocs.io/en/latest/acoustic/English/English%20MFA%20acoustic%20model%20v2_2_1.html)), then adapted/fine-tuned on Panara speech (the same 30-45min from Option 1)
 
 TBD
